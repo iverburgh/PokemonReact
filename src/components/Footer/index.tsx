@@ -1,9 +1,12 @@
 import React from "react";
+import "./style.scss";
 
 function Footer() {
   return (
-    <div className="main">
-      <h1>Footer</h1>
+    <div className="footer">
+      <div className="container">
+        <span className="text-muted">Gotta catch 'm all!</span>
+      </div>
     </div>
   );
 }

@@ -8,13 +8,14 @@ import Footer from "./components/Footer/";
 
 // Pages
 import Home from "./pages/Home";
+import Pokedex from "./pages/Pokedex";
 
 const App: React.FC = () => (
   <BrowserRouter>
     <div className="App">
       <Header />
       <Route exact={true} path="/" component={Home} />
-      {/* <Route path="/toetsen" component={Toetsen} />*/}
+      <Route path="/pokedex" component={Pokedex} />
       <Footer />
     </div>
   </BrowserRouter>
