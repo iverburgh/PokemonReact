@@ -1,24 +1,27 @@
 import React from "react";
-import { Pokemon } from "../../../models/pokemon";
 import "./style.scss";
+import { PokemonDb } from "../../../models/pokemondb";
 
 interface Props {
-  pokemon: Pokemon;
-  onDeletePokemon: (pokemonId: number) => void;
+  pokemon: PokemonDb;
 }
 
-const PokemonTile = ({ pokemon, onDeletePokemon }: Props) => {
+const PokemonTile = ({ pokemon }: Props) => {
   return (
     <div className="pokemon">
-      <img
-        src={`${process.env.PUBLIC_URL}/images/pokemonsprites/${pokemon.id}.png`}
-        className="sprite"
-        alt={pokemon.name}
-      />
-      <h3 className="pokemon-name">{pokemon.name}</h3>
-      <button className="remove" onClick={() => onDeletePokemon(pokemon.id)}>
-        &times;
-      </button>
+      <span className="pokemonNumber">
+        <h4>{pokemon.number}</h4>
+      </span>
+      <div className="pokemonImage">
+        <img
+          src={`${process.env.PUBLIC_URL}/images/pokemonsprites/${pokemon.number}.png`}
+          className="sprite"
+          alt={pokemon.name}
+        />
+      </div>
+      <span className={pokemon.types[0]}>
+        <h3 className="pokemon-name">{pokemon.name}</h3>
+      </span>
     </div>
   );
 };

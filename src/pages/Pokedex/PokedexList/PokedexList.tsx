@@ -1,22 +1,17 @@
 import React from "react";
-import { Pokemon } from "../../../models/pokemon";
 import PokemonTile from "../PokemonTile";
 import "./style.scss";
+import { PokemonDb } from "../../../models/pokemondb";
 
 interface Props {
-  pokedex: Pokemon[];
-  onDeletePokemon: (pokemonId: number) => void;
+  pokedex: PokemonDb[];
 }
 
-const PokedexList = ({ pokedex, onDeletePokemon }: Props) => {
+const PokedexList = ({ pokedex }: Props) => {
   return (
     <div className="pokedex-list">
       {pokedex.map(pokemon => (
-        <PokemonTile
-          key={pokemon.id}
-          pokemon={pokemon}
-          onDeletePokemon={onDeletePokemon}
-        />
+        <PokemonTile key={pokemon.number} pokemon={pokemon} />
       ))}
     </div>
   );

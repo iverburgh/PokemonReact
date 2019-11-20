@@ -1,17 +1,12 @@
 import React from "react";
-import { Pokemon } from "../../../models/pokemon";
 import PokedexList from "./PokedexList";
+import { PokemonDb } from "../../../models/pokemondb";
+import data from "./db.json";
 
 const PokedexListContainer = () => {
-  const pokedexString = localStorage.getItem("pokedex");
-  let pokedex: Pokemon[] = JSON.parse(pokedexString ? pokedexString : "{}");
+  let pokedex: PokemonDb[] = data as PokemonDb[];
 
-  const onDeletePokemon = (pokemonId: number) => {
-    pokedex = pokedex.filter(pokemon => pokemon.id !== pokemonId);
-    localStorage.setItem("pokedex", JSON.stringify(pokedex));
-  };
-
-  return <PokedexList pokedex={pokedex} onDeletePokemon={onDeletePokemon} />;
+  return <PokedexList pokedex={pokedex} />;
 };
 
 export default PokedexListContainer;

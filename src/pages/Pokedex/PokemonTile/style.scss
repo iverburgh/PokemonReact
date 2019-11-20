@@ -1,13 +1,21 @@
-.pokedex-list .pokemon {
+.pokemon {
   position: relative;
   display: flex;
   flex-flow: column;
   min-height: 150px;
-  padding: 15px;
   background: #f3f3f3;
 }
 
-.pokedex-list .pokemon .remove {
+h4 {
+  margin: 2px 0px;
+  line-height: 28px;
+}
+
+.pokemonImage {
+  padding: 15px;
+}
+
+.pokemon .remove {
   position: absolute;
   top: 0;
   right: 0;
@@ -22,6 +30,63 @@
   cursor: pointer;
 }
 
+h3 {
+  font-size: 1.5rem;
+  line-height: 36px;
+}
+
 .pokedex-list .pokemon .sprite {
   width: 100%;
+}
+
+.Grass {
+  background-color: green;
+}
+
+.Fire {
+  background-color: red;
+}
+
+.Water {
+  background-color: blue;
+}
+
+.Bug {
+  background-color: #ab2;
+}
+
+.Normal {
+  background-color: #aa9;
+}
+
+.Poison {
+  background-color: #a59;
+}
+
+.Electric {
+  background-color: #fc3;
+}
+
+.Ground {
+  background-color: #db5;
+}
+
+.Fairy {
+  background-color: #e9e;
+}
+
+.Fighting {
+  background-color: #b54;
+}
+
+.Psychic {
+  background-color: #f59;
+}
+
+.Rock {
+  background-color: #ba6;
+}
+
+.Ghost {
+  background-color: #66b;
 }
