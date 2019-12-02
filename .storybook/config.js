@@ -1,12 +1,11 @@
 import { configure } from "@storybook/react";
 import requireContext from "require-context.macro";
 
-import "../src/index.css";
-
-const req = requireContext("../src/components", true, /\.stories\.tsx$/);
+// automatically import all files ending in *.stories.tsx and *.story.tsx
+const req = requireContext("../src/stories", true, /\.(stories|story)\.tsx$/);
 
 function loadStories() {
-  req.keys().forEach(filename => req(filename));
+  req.keys().forEach(req);
 }
 
 configure(loadStories, module);

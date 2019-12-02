@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots PokemonTile bug 1`] = `
+<div
+  className="pokemon"
+>
+  <span
+    className="pokemonNumber"
+  >
+    <h4>
+      1
+    </h4>
+  </span>
+  <div
+    className="pokemonImage"
+  >
+    <img
+      alt="test"
+      className="sprite"
+      src="/images/pokemonsprites/1.png"
+    />
+  </div>
+  <span
+    className="Bug"
+  >
+    <h3
+      className="pokemon-name"
+    >
+      test
+    </h3>
+  </span>
+</div>
+`;
+
+exports[`Storyshots PokemonTile fairy 1`] = `
+<div
+  className="pokemon"
+>
+  <span
+    className="pokemonNumber"
+  >
+    <h4>
+      1
+    </h4>
+  </span>
+  <div
+    className="pokemonImage"
+  >
+    <img
+      alt="test"
+      className="sprite"
+      src="/images/pokemonsprites/1.png"
+    />
+  </div>
+  <span
+    className="Fairy"
+  >
+    <h3
+      className="pokemon-name"
+    >
+      test
+    </h3>
+  </span>
+</div>
+`;
+
+exports[`Storyshots PokemonTile fire 1`] = `
+<div
+  className="pokemon"
+>
+  <span
+    className="pokemonNumber"
+  >
+    <h4>
+      1
+    </h4>
+  </span>
+  <div
+    className="pokemonImage"
+  >
+    <img
+      alt="test"
+      className="sprite"
+      src="/images/pokemonsprites/1.png"
+    />
+  </div>
+  <span
+    className="Fire"
+  >
+    <h3
+      className="pokemon-name"
+    >
+      test
+    </h3>
+  </span>
+</div>
+`;
+
+exports[`Storyshots PokemonTile grass 1`] = `
+<div
+  className="pokemon"
+>
+  <span
+    className="pokemonNumber"
+  >
+    <h4>
+      1
+    </h4>
+  </span>
+  <div
+    className="pokemonImage"
+  >
+    <img
+      alt="test"
+      className="sprite"
+      src="/images/pokemonsprites/1.png"
+    />
+  </div>
+  <span
+    className="Grass"
+  >
+    <h3
+      className="pokemon-name"
+    >
+      test
+    </h3>
+  </span>
+</div>
+`;
+
+exports[`Storyshots PokemonTile water 1`] = `
+<div
+  className="pokemon"
+>
+  <span
+    className="pokemonNumber"
+  >
+    <h4>
+      1
+    </h4>
+  </span>
+  <div
+    className="pokemonImage"
+  >
+    <img
+      alt="test"
+      className="sprite"
+      src="/images/pokemonsprites/1.png"
+    />
+  </div>
+  <span
+    className="Water"
+  >
+    <h3
+      className="pokemon-name"
+    >
+      test
+    </h3>
+  </span>
+</div>
+`;
