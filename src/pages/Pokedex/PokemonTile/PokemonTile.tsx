@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.scss";
 import { PokemonDb } from "../../../models/pokemondb";
-import { booleanTypeAnnotation } from "@babel/types";
 
 interface Props {
   pokemon: PokemonDb;

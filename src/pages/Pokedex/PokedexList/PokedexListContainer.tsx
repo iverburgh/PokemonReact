@@ -4,9 +4,12 @@ import { PokemonDb } from "../../../models/pokemondb";
 import data from "./db.json";
 
 const PokedexListContainer = () => {
-  let pokedex: PokemonDb[] = data as PokemonDb[];
+  let pokemonList: PokemonDb[] = data as PokemonDb[];
+  const pokedex: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  return <PokedexList pokedex={pokedex} />;
+  return (
+    <PokedexList loading={false} pokemonList={pokemonList} pokedex={pokedex} />
+  );
 };
 
 export default PokedexListContainer;

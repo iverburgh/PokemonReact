@@ -4,16 +4,35 @@ import "./style.scss";
 import { PokemonDb } from "../../../models/pokemondb";
 
 interface Props {
-  pokedex: PokemonDb[];
+  loading: boolean;
+  pokemonList: PokemonDb[];
+  pokedex: number[];
 }
 
-const PokedexList = ({ pokedex }: Props) => {
+const PokedexList = ({ loading, pokemonList, pokedex }: Props) => {
+  if (loading) {
+    return <div className="pokedex-list">loading</div>;
+  }
+
+  if (pokemonList.length === 0) {
+    return <div className="pokedex-list">empty</div>;
+  }
+
   return (
-    <div className="pokedex-list">
-      {pokedex.map(pokemon => (
-        <PokemonTile key={pokemon.number} pokemon={pokemon} />
-      ))}
-    </div>
+    <>
+      <div className="header">
+        CAUGHT: {pokedex.length} SEEN: {pokedex.length + 10}
+      </div>
+      <div className="pokedex-list">
+        {pokemonList.map(pokemon => (
+          <PokemonTile
+            key={pokemon.number}
+            pokemon={pokemon}
+            caught={pokedex.some(p => p.toString() === pokemon.number)}
+          />
+        ))}
+      </div>
+    </>
   );
 };
 
