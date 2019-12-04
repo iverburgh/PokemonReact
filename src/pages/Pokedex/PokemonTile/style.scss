@@ -39,6 +39,10 @@ h3 {
   width: 100%;
 }
 
+.blurred {
+  filter: blur(10px);
+}
+
 .Grass {
   background-color: green;
 }
