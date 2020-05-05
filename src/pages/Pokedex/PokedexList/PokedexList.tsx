@@ -1,11 +1,11 @@
 import React from "react";
 import PokemonTile from "../PokemonTile";
 import "./style.scss";
-import { PokemonDb } from "../../../models/pokemondb";
+import { Pokemon } from "../../../models/pokemon";
 
 interface Props {
   loading: boolean;
-  pokemonList: PokemonDb[];
+  pokemonList: Pokemon[];
   pokedex: number[];
 }
 
@@ -24,11 +24,11 @@ const PokedexList = ({ loading, pokemonList, pokedex }: Props) => {
         CAUGHT: {pokedex.length} SEEN: {pokedex.length + 10}
       </div>
       <div className="pokedex-list">
-        {pokemonList.map(pokemon => (
+        {pokemonList.map((pokemon) => (
           <PokemonTile
             key={pokemon.number}
             pokemon={pokemon}
-            caught={pokedex.some(p => p.toString() === pokemon.number)}
+            caught={pokedex.some((p) => p === pokemon.number)}
           />
         ))}
       </div>

@@ -7,17 +7,17 @@ import { pokemonFairy } from "./mocks/pokemon/pokemonFairy";
 import { pokemonBug } from "./mocks/pokemon/pokemonBug";
 import { pokemonFire } from "./mocks/pokemon/pokemonFire";
 import { pokemonWater } from "./mocks/pokemon/pokemonWater";
-import { PokemonDb } from "../models/pokemondb";
+import { Pokemon } from "../models/pokemon";
 
 const pokedexEmpty: number[] = [];
 const pokedexFilled: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const pokemonListEmpty: PokemonDb[] = [];
-const pokemonListFilled: PokemonDb[] = [
+const pokemonListEmpty: Pokemon[] = [];
+const pokemonListFilled: Pokemon[] = [
   pokemonGrass,
   pokemonFairy,
   pokemonBug,
   pokemonFire,
-  pokemonWater
+  pokemonWater,
 ];
 
 storiesOf("PokedexList", module)

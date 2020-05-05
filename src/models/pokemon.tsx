@@ -1,27 +1,22 @@
-import { Ability } from './ability';
-import { Species } from './species';
-import { GameIndex } from './gameIndex';
-import { Move } from './move';
-import { Sprites } from './sprites';
-import { Stat } from './stat';
-import { Type } from './type';
+import { Abilities } from "./abilities";
+import { Family } from "./family";
 
 export interface Pokemon {
-    abilities:                Ability[];
-    base_experience:          number;
-    forms:                    Species[];
-    game_indices:             GameIndex[];
-    height:                   number;
-    held_items:               any[];
-    id:                       number;
-    is_default:               boolean;
-    location_area_encounters: string;
-    moves:                    Move[];
-    name:                     string;
-    order:                    number;
-    species:                  Species;
-    sprites:                  Sprites;
-    stats:                    Stat[];
-    types:                    Type[];
-    weight:                   number;
+  id: string;
+  number: number;
+  name: string;
+  species: string;
+  types: string[];
+  abilities: Abilities;
+  eggGroups: string[];
+  gender: number[];
+  height: string;
+  weight: string;
+  family: Family;
+  starter: boolean;
+  legendary: boolean;
+  mythical: boolean;
+  ultraBeast: boolean;
+  mega: boolean;
+  gen: number;
 }

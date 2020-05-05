@@ -1,17 +1,18 @@
-import { PokemonDb } from "../../../models/pokemondb";
+import { Pokemon } from "../../../models/pokemon";
 import { Abilities } from "../../../models/abilities";
 import { Family } from "../../../models/family";
 const abilities: Abilities = {
   normal: [""],
-  hidden: [""]
+  hidden: [""],
 };
 const family: Family = {
   id: 0,
   evolutionStage: 0,
-  evolutionLine: [""]
+  evolutionLine: [""],
 };
-export const pokemonBug: PokemonDb = {
-  number: "1",
+export const pokemonBug: Pokemon = {
+  id: "12345789abcd",
+  number: 1,
   name: "test",
   species: "",
   types: ["Bug"],
@@ -26,5 +27,5 @@ export const pokemonBug: PokemonDb = {
   mythical: false,
   ultraBeast: false,
   mega: false,
-  gen: 1
+  gen: 1,
 };

@@ -7,10 +7,6 @@ import "./style.scss";
 const Home = () => {
   const [wildPokemon, setWildPokemon] = useState<Pokemon>();
 
-  // useEffect(() => {
-  //   encounterWildPokemon();
-  // }, []);
-
   useIntervalHook(() => {
     encounterWildPokemon();
   }, 5000);
@@ -23,8 +19,8 @@ const Home = () => {
 
   const encounterWildPokemon = () => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon/" + getRandomPokemonId())
-      .then(response => {
+      .get("http://localhost:3000/pokemon/" + getRandomPokemonId())
+      .then((response) => {
         setWildPokemon(response.data);
       });
   };
@@ -32,12 +28,12 @@ const Home = () => {
   const addPokemonToPokedex = (pokemon: Pokemon) => {
     const pokedexString = localStorage.getItem("pokedex");
     let pokedex: Pokemon[] = JSON.parse(pokedexString ? pokedexString : "{}");
-    const monExists = pokedex.filter(p => pokemon.id === p.id).length > 0;
+    const monExists = pokedex.filter((p) => pokemon.id === p.id).length > 0;
 
     if (!monExists) {
       pokedex = [...pokedex, pokemon];
       pokedex.sort(function(a, b) {
-        return a.id - b.id;
+        return a.number - b.number;
       });
     }
     localStorage.setItem("pokedex", JSON.stringify(pokedex));
@@ -53,7 +49,7 @@ const Home = () => {
       <h2>Wild Encounter</h2>
       {wildPokemon && (
         <img
-          src={`${process.env.PUBLIC_URL}/images/pokemonsprites/${wildPokemon.id}.png`}
+          src={`${process.env.PUBLIC_URL}/images/pokemonsprites/${wildPokemon.number}.png`}
           className="sprite"
           alt={wildPokemon.name}
         />

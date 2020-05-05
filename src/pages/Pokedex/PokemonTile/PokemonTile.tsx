@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.scss";
-import { PokemonDb } from "../../../models/pokemondb";
+import { Pokemon } from "../../../models/pokemon";
 
 interface Props {
-  pokemon: PokemonDb;
+  pokemon: Pokemon;
   caught: boolean;
 }
 
