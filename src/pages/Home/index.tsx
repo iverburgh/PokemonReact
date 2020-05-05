@@ -6,7 +6,6 @@ import "./style.scss";
 
 const Home = () => {
   const [wildPokemon, setWildPokemon] = useState<Pokemon>();
-
   useIntervalHook(() => {
     encounterWildPokemon();
   }, 5000);

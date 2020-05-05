@@ -13,6 +13,7 @@ function useIntervalHook(callback: Function, delay: number) {
         savedCallback.current();
       }
     }
+    tick();
     if (delay !== null) {
       let id = setInterval(tick, delay);
       return () => clearInterval(id);
