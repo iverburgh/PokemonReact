@@ -5,6 +5,7 @@ import useIntervalHook from "../../custom/useIntervalHook";
 import "./style.scss";
 import { Trainer } from "../../models/trainer";
 import { TrainerPokemon } from "../../models/trainerpokemon";
+import { Guid } from "guid-typescript";
 
 const Home = () => {
   const [trainer, setTrainer] = useState<Trainer>();
@@ -44,10 +45,23 @@ const Home = () => {
     if (trainer) {
       trainer.pokemoncaught++;
       const trainerPokemon: TrainerPokemon = {
+        id: Guid.create().toString(),
+        pokemonname: pokemon.name,
         pokemonnumber: pokemon.number,
         caughtdate: new Date(),
       };
       trainer.trainerpokemons.push(trainerPokemon);
+      setTrainer(trainer);
+      axios.put("http://localhost:3000/trainer/" + trainer.id, trainer);
+    }
+  };
+
+  const removePokemonFromTrainer = (trainerpokemonid: string) => {
+    if (trainer) {
+      trainer.trainerpokemons = trainer.trainerpokemons.filter(
+        (tp) => tp.id !== trainerpokemonid
+      );
+      trainer.pokemoncaught--;
       setTrainer(trainer);
       axios.put("http://localhost:3000/trainer/" + trainer.id, trainer);
     }
@@ -92,8 +106,13 @@ const Home = () => {
                   className="sprite"
                   alt={trainerpokemon.pokemonnumber.toString()}
                 />
-                <h3 className="pokemon-name">Pokemonnaam</h3>
-                {/* <button className="remove" onClick={() => releasePokemon(pokemon.id)}>&times;</button> */}
+                <h3 className="pokemon-name">{trainerpokemon.pokemonname}</h3>
+                <button
+                  className="remove"
+                  onClick={() => removePokemonFromTrainer(trainerpokemon.id)}
+                >
+                  &times;
+                </button>
               </div>
             ))}
           </div>
