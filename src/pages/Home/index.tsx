@@ -1,14 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Pokemon } from "../../models/pokemon";
 import axios from "axios";
 import useIntervalHook from "../../custom/useIntervalHook";
 import "./style.scss";
+import { Trainer } from "../../models/trainer";
+import { TrainerPokemon } from "../../models/trainerpokemon";
 
 const Home = () => {
+  const [trainer, setTrainer] = useState<Trainer>();
   const [wildPokemon, setWildPokemon] = useState<Pokemon>();
+
+  useEffect(() => {
+    getTrainer();
+  }, [trainer]);
+
   useIntervalHook(() => {
     encounterWildPokemon();
   }, 5000);
+
+  const getTrainer = () => {
+    axios
+      .get("http://localhost:3000/trainer/5eb069b0eabc101abc927af5")
+      .then((response) => {
+        setTrainer(response.data);
+      });
+  };
 
   const getRandomPokemonId = () => {
     const min = Math.ceil(1);
@@ -24,42 +40,68 @@ const Home = () => {
       });
   };
 
-  const addPokemonToPokedex = (pokemon: Pokemon) => {
-    const pokedexString = localStorage.getItem("pokedex");
-    let pokedex: Pokemon[] = JSON.parse(pokedexString ? pokedexString : "{}");
-    const monExists = pokedex.filter((p) => pokemon.id === p.id).length > 0;
-
-    if (!monExists) {
-      pokedex = [...pokedex, pokemon];
-      pokedex.sort(function(a, b) {
-        return a.number - b.number;
-      });
+  const addPokemonToTrainer = (pokemon: Pokemon) => {
+    if (trainer) {
+      trainer.pokemoncaught++;
+      const trainerPokemon: TrainerPokemon = {
+        pokemonnumber: pokemon.number,
+        caughtdate: new Date(),
+      };
+      trainer.trainerpokemons.push(trainerPokemon);
+      setTrainer(trainer);
+      axios.put("http://localhost:3000/trainer/" + trainer.id, trainer);
     }
-    localStorage.setItem("pokedex", JSON.stringify(pokedex));
   };
 
   const catchPokemon = (pokemon: Pokemon) => {
-    addPokemonToPokedex(pokemon);
+    addPokemonToTrainer(pokemon);
     encounterWildPokemon();
   };
 
-  return (
-    <section className="wild-pokemon">
-      <h2>Wild Encounter</h2>
-      {wildPokemon && (
-        <img
-          src={`${process.env.PUBLIC_URL}/images/pokemonsprites/${wildPokemon.number}.png`}
-          className="sprite"
-          alt={wildPokemon.name}
-        />
-      )}
-      {wildPokemon && <h3>{wildPokemon.name}</h3>}
-      {wildPokemon && (
-        <button className="catch-btn" onClick={() => catchPokemon(wildPokemon)}>
-          CATCH
-        </button>
-      )}
-    </section>
-  );
+  if (trainer) {
+    return (
+      <div className="app-wrapper">
+        <section className="wild-pokemon">
+          <h2>Wild Encounter</h2>
+          {wildPokemon && (
+            <img
+              src={`${process.env.PUBLIC_URL}/images/pokemonsprites/${wildPokemon.number}.png`}
+              className="sprite"
+              alt={wildPokemon.name}
+            />
+          )}
+          {wildPokemon && <h3>{wildPokemon.name}</h3>}
+          {wildPokemon && (
+            <button
+              className="catch-btn"
+              onClick={() => catchPokemon(wildPokemon)}
+            >
+              CATCH
+            </button>
+          )}
+        </section>
+        <section className="pokedex">
+          <h2>
+            {trainer.name} has caught {trainer.pokemoncaught} Pokémon
+          </h2>
+          <div className="pokedex-list">
+            {trainer.trainerpokemons.map((trainerpokemon) => (
+              <div className="pokemon" key={trainerpokemon.pokemonnumber}>
+                <img
+                  src={`${process.env.PUBLIC_URL}/images/pokemonsprites/${trainerpokemon.pokemonnumber}.png`}
+                  className="sprite"
+                  alt={trainerpokemon.pokemonnumber.toString()}
+                />
+                <h3 className="pokemon-name">Pokemonnaam</h3>
+                {/* <button className="remove" onClick={() => releasePokemon(pokemon.id)}>&times;</button> */}
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    );
+  } else {
+    return <div className="app-wrapper">Please login</div>;
+  }
 };
 export default Home;
